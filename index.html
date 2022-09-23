@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/LimiteDepartamental_1.js"></script>
+        <script src="data/RendimientopormunicipioenNario2021tha_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-2.80886288042955,-80.43554827127673],[7.690973870815323,-67.45403835471859]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_LimiteDepartamental_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">DEPT</th>\
+                        <td>' + (feature.properties['DEPT'] !== null ? autolinker.link(feature.properties['DEPT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_LimiteDepartamental_1_0() {
+            return {
+                pane: 'pane_LimiteDepartamental_1',
+                opacity: 1,
+                color: 'rgba(128,152,72,0.64)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(186,221,105,0.64)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_LimiteDepartamental_1');
+        map.getPane('pane_LimiteDepartamental_1').style.zIndex = 401;
+        map.getPane('pane_LimiteDepartamental_1').style['mix-blend-mode'] = 'normal';
+        var layer_LimiteDepartamental_1 = new L.geoJson(json_LimiteDepartamental_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LimiteDepartamental_1',
+            layerName: 'layer_LimiteDepartamental_1',
+            pane: 'pane_LimiteDepartamental_1',
+            onEachFeature: pop_LimiteDepartamental_1,
+            style: style_LimiteDepartamental_1_0,
+        });
+        bounds_group.addLayer(layer_LimiteDepartamental_1);
+        map.addLayer(layer_LimiteDepartamental_1);
+        function pop_RendimientopormunicipioenNario2021tha_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">DEPT</th>\
+                        <td>' + (feature.properties['DEPT'] !== null ? autolinker.link(feature.properties['DEPT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">MUNICIPIO</th>\
+                        <td>' + (feature.properties['MUNICIPIO'] !== null ? autolinker.link(feature.properties['MUNICIPIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">AÑO</th>\
+                        <td>' + (feature.properties['AÑO'] !== null ? autolinker.link(feature.properties['AÑO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">A_Sem_(ha)</th>\
+                        <td>' + (feature.properties['A_Sem_(ha)'] !== null ? autolinker.link(feature.properties['A_Sem_(ha)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">A_Cos_(ha)</th>\
+                        <td>' + (feature.properties['A_Cos_(ha)'] !== null ? autolinker.link(feature.properties['A_Cos_(ha)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Prod_(t)</th>\
+                        <td>' + (feature.properties['Prod_(t)'] !== null ? autolinker.link(feature.properties['Prod_(t)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Rend_(t/ha</th>\
+                        <td>' + (feature.properties['Rend_(t/ha'] !== null ? autolinker.link(feature.properties['Rend_(t/ha'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_RendimientopormunicipioenNario2021tha_2_0(feature) {
+            if (feature.properties['Rend_(t/ha'] >= 1.800000 && feature.properties['Rend_(t/ha'] <= 3.793300 ) {
+                return {
+                pane: 'pane_RendimientopormunicipioenNario2021tha_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,25,28,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Rend_(t/ha'] >= 3.793300 && feature.properties['Rend_(t/ha'] <= 3.989021 ) {
+                return {
+                pane: 'pane_RendimientopormunicipioenNario2021tha_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,174,97,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Rend_(t/ha'] >= 3.989021 && feature.properties['Rend_(t/ha'] <= 4.994010 ) {
+                return {
+                pane: 'pane_RendimientopormunicipioenNario2021tha_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,191,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Rend_(t/ha'] >= 4.994010 && feature.properties['Rend_(t/ha'] <= 7.524500 ) {
+                return {
+                pane: 'pane_RendimientopormunicipioenNario2021tha_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(171,221,164,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Rend_(t/ha'] >= 7.524500 && feature.properties['Rend_(t/ha'] <= 10.000000 ) {
+                return {
+                pane: 'pane_RendimientopormunicipioenNario2021tha_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(43,131,186,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_RendimientopormunicipioenNario2021tha_2');
+        map.getPane('pane_RendimientopormunicipioenNario2021tha_2').style.zIndex = 402;
+        map.getPane('pane_RendimientopormunicipioenNario2021tha_2').style['mix-blend-mode'] = 'normal';
+        var layer_RendimientopormunicipioenNario2021tha_2 = new L.geoJson(json_RendimientopormunicipioenNario2021tha_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_RendimientopormunicipioenNario2021tha_2',
+            layerName: 'layer_RendimientopormunicipioenNario2021tha_2',
+            pane: 'pane_RendimientopormunicipioenNario2021tha_2',
+            onEachFeature: pop_RendimientopormunicipioenNario2021tha_2,
+            style: style_RendimientopormunicipioenNario2021tha_2_0,
+        });
+        bounds_group.addLayer(layer_RendimientopormunicipioenNario2021tha_2);
+        map.addLayer(layer_RendimientopormunicipioenNario2021tha_2);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Rendimiento por municipio en Nariño  2021 (t/ha)<br /><table><tr><td style="text-align: center;"><img src="legend/RendimientopormunicipioenNario2021tha_2_183790.png" /></td><td>1,8 - 3,79</td></tr><tr><td style="text-align: center;"><img src="legend/RendimientopormunicipioenNario2021tha_2_3793991.png" /></td><td>3,79 - 3,99</td></tr><tr><td style="text-align: center;"><img src="legend/RendimientopormunicipioenNario2021tha_2_3994992.png" /></td><td>3,99 - 4,99</td></tr><tr><td style="text-align: center;"><img src="legend/RendimientopormunicipioenNario2021tha_2_4997523.png" /></td><td>4,99 - 7,52</td></tr><tr><td style="text-align: center;"><img src="legend/RendimientopormunicipioenNario2021tha_2_752104.png" /></td><td>7,52 - 10</td></tr></table>': layer_RendimientopormunicipioenNario2021tha_2,'<img src="legend/LimiteDepartamental_1.png" /> Limite Departamental': layer_LimiteDepartamental_1,"OSM Standard": layer_OSMStandard_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
